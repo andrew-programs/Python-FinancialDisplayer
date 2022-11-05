@@ -1,19 +1,24 @@
-from dataclasses import dataclass
 import pandas as pd
 import csv
+import matplotlib.pyplot as plt
 
-@dataclass(frozen=True)
 class BankCSV:
+    def __init__(self) -> None:
+        pass
+
     # Read bank CSV and return a list of strings and numbers.
-    def readBankCSV(self, fileName: str) -> list:
+    def readBankCSV(self, fileName: str) -> None:
+        csvData = []
+
         with open(f"./csv/{fileName}", "r") as csvFile:
-            csvReader = csv.reader(csvFile)
+            csvData = list(csv.reader(csvFile))
         return csvData
     
-    # Display CSV data return nothing.
-    def displayBankCSV(self, bankData, x: str="Posting Date", y: str="Amount", graphType: str="Line") -> None: 
-        data = pd.read_csv()
-        df.plot(x=x, y=y, kind=graphType)
+    # Display CSV data and return nothing.
+    def displayBankCSV(self, bankData: list, x: str, y: str) -> None: 
+        df = pd.DataFrame(bankData)
+        plt.plot(df[x], df[y])
+        plt.show()
     
     # Export CSV data if somehow stuff got changed.
     def exportBankCSV(self):
@@ -22,8 +27,7 @@ class BankCSV:
 def main() -> None:
     bankCSV = BankCSV()
     bankData = bankCSV.readBankCSV("bankinfo.CSV")
-    print(bankData)
-    bankCSV.displayBankCSV(bankData)
+    bankCSV.displayBankCSV(bankData, 1, 5)
 
 if __name__ == "__main__":
     main()
