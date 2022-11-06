@@ -1,11 +1,12 @@
-import pandas as pd
-import csv
+from FinancialDisplayer import BankCSV
 
 def main(fileName: str):
-    with open(f'{fileName}', 'r') as csvFile:
-        data = csv.reader(csvFile)
-    
-    df = pd.DataFrame(data)
-    
-    print(df)
+    bankStatementReader = BankCSV()
+    bankData = bankStatementReader.readBankCSV(fileName)
+
+    bankStatementReader.displayBankCSV(bankData, "Posting Date", "Amount")
+
 if __name__ == "__main__":
+    userInput = input("CSV file name > ")
+    
+    main(userInput)
