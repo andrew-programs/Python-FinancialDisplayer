@@ -1,6 +1,5 @@
 import csv
 import matplotlib.pyplot as plt
-from .errors
 
 class BankCSV:
     def __init__(self) -> None:
